@@ -35,26 +35,11 @@ public class TourServiceImpl implements TourService{
     }
 
     @Override
-    public Tour saveTour(Tour tour) {
-       return tourRepository.save(tour);
-    }
-
-    @Override
-    public List<Tour> saveAllTours(List<Tour> tours) {
-        return (List<Tour>) tourRepository.saveAll(tours);
-
-    }
-
-    @Override
     public Page<Tour> getToursPage(Pageable pageable,Integer minPrice,Integer maxPrice) {
 
         return tourRepository.findByPriceBetween(minPrice,maxPrice,pageable);
     }
 
-    @Override
-    public Integer getAmount() {
-        return tourRepository.getAmount();
-    }
 
     @Override
     public List<UserTour> getUserTours(String userId) {

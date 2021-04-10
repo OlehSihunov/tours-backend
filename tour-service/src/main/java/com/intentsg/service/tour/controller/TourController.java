@@ -18,11 +18,8 @@ import java.util.List;
 @RequestMapping("/tours")
 public class TourController {
     @Autowired
-	TourService tourService;
-	@GetMapping("/test")
-	public ResponseEntity test() {
-		return ResponseEntity.ok("tours-service");
-	}
+	private  TourService tourService;
+
 
 
 	@GetMapping("/")
@@ -35,31 +32,28 @@ public class TourController {
 	public ResponseEntity<Tour> getTourById(@PathVariable("tourId") Long id) {
 		return  new ResponseEntity<Tour>(tourService.getTourById(id),HttpStatus.OK);
 	}
-	@PostMapping("/addTour")
+	/*@PostMapping("/addTour")
 	public ResponseEntity<Tour> saveNewTour(@RequestBody Tour tour) {
-		return new ResponseEntity<Tour>(tourService.saveTour(tour),HttpStatus.OK);
+		return new ResponseEntity<Tour>(tourService.saveTour(tour),HttpStatus.CREATED);
 	}
 	@PostMapping("/addTours")
 	public ResponseEntity<List<Tour>> saveAllTours(@RequestBody List<Tour> tours) {
-		return  new ResponseEntity<List<Tour>>(tourService.saveAllTours(tours),HttpStatus.OK);
-	}
+		return  new ResponseEntity<List<Tour>>(tourService.saveAllTours(tours),HttpStatus.CREATED);
+	}*/
 	@GetMapping("/getPage")
 	public ResponseEntity<Page<Tour>> getToursPage(@RequestParam Integer maxPrice, @RequestParam Integer minPrice,Pageable pageable) {
 
 		System.out.println(pageable);
 		return  new ResponseEntity<Page<Tour>>(tourService.getToursPage(pageable,minPrice,maxPrice),HttpStatus.OK);
 	}
-	@GetMapping("/getAmount")
-	public ResponseEntity<Integer> getAmount(){
-		return new ResponseEntity<Integer>(tourService.getAmount(),HttpStatus.OK);
-	}
+
     @GetMapping("/users/{userId}")
 	public ResponseEntity<List<UserTour>> getUserTours(@PathVariable("userId") String userId) {
 		return  new ResponseEntity<List<UserTour>>(tourService.getUserTours(userId),HttpStatus.OK);
 	}
 	@PostMapping("/users/addNew")
 	public ResponseEntity<UserTour> saveNewUserTour(@RequestBody UserTour userTour) {
-		return  new ResponseEntity<UserTour>(tourService.saveNewUserTour(userTour),HttpStatus.OK);
+		return  new ResponseEntity<UserTour>(tourService.saveNewUserTour(userTour),HttpStatus.CREATED);
 	}
 
 }

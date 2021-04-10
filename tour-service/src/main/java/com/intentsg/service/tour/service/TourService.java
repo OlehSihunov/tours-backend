@@ -10,10 +10,7 @@ public interface TourService {
     Tour getTourById(Long id);
     List<Tour> getAllTours();
     List<Tour> getUserTours(Long id);
-    Tour saveTour(Tour tour);
-    List<Tour> saveAllTours(List<Tour> tours);
     Page<Tour> getToursPage(Pageable pageable,Integer minPrice, Integer maxPrice);
-    Integer getAmount();
     List<UserTour> getUserTours(String userId);
     UserTour saveNewUserTour(UserTour userTour);
 
