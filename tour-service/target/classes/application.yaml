@@ -5,9 +5,9 @@ spring:
   application:
     name: tour-service
   datasource:
-    url: jdbc:mysql://localhost:3306/tours
-    username: root
-    password: 1111
+    url: jdbc:mysql://tours.cnmkzpeyddof.eu-central-1.rds.amazonaws.com:3304/tours
+    username: toursroot
+    password: root1111
 
 
 eureka:

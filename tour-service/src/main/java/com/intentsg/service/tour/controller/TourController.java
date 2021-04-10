@@ -1,6 +1,7 @@
 package com.intentsg.service.tour.controller;
 
 import com.intentsg.service.tour.model.Tour;
+import com.intentsg.service.tour.model.UserTour;
 import com.intentsg.service.tour.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,6 +52,14 @@ public class TourController {
 	@GetMapping("/getAmount")
 	public ResponseEntity<Integer> getAmount(){
 		return new ResponseEntity<Integer>(tourService.getAmount(),HttpStatus.OK);
+	}
+    @GetMapping("/users/{userId}")
+	public ResponseEntity<List<UserTour>> getUserTours(@PathVariable("userId") String userId) {
+		return  new ResponseEntity<List<UserTour>>(tourService.getUserTours(userId),HttpStatus.OK);
+	}
+	@PostMapping("/users/addNew")
+	public ResponseEntity<UserTour> saveNewUserTour(@RequestBody UserTour userTour) {
+		return  new ResponseEntity<UserTour>(tourService.saveNewUserTour(userTour),HttpStatus.OK);
 	}
 
 }
