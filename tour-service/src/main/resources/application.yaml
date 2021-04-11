@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: tour-service
+  datasource:
+    url: jdbc:mysql://tours.cnmkzpeyddof.eu-central-1.rds.amazonaws.com:3304/tours
+    username: toursroot
+    password: root1111
+
 
 eureka:
   instance:
