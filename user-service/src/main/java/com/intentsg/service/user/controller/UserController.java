@@ -31,14 +31,14 @@ public class UserController {
 	public ResponseEntity<List<User>> getAll(){
 		return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
 	}
+	
 	@PostMapping("/changeBalance")
-	public ResponseEntity<?> changeBalans(@RequestBody User user) {
-		userService.changeUserBalance(user);
-		return ResponseEntity.ok(HttpStatus.ACCEPTED);
+	public ResponseEntity<User> changeBalance(@RequestBody User user) {
+		return new ResponseEntity<>(userService.changeUserBalance(user), HttpStatus.OK);
 	}
 	@PostMapping("/balance")
 	public ResponseEntity<Integer> balance(@RequestBody User user){
 		return new ResponseEntity<>(userService.getUserBalance(user), HttpStatus.OK);
 	}
-	//hello
+	
 }

@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public void changeUserBalance(User user) {
+    public User changeUserBalance(User user) {
         User authenticatedUser = userService.getAll()
                 .stream()
                 .filter(x -> x.getId().equals(user.getId()))
@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService {
         if (user != null && authenticatedUser != null && user.getBalance() >= 0) {
                 authenticatedUser.setBalance(user.getBalance());
                 userRepository.changeUserBalanceDB(authenticatedUser.getId(), authenticatedUser.getBalance());
+                return userRepository.findById(authenticatedUser.getId()).get();
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not have enough money");
         }
