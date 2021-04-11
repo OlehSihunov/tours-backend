@@ -4,7 +4,10 @@ server:
 spring:
   application:
     name: user-service
-
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_db?autoReconnect=true&useSSL=false
+    username: Bogdan
+    password: Bogdan3993!
 eureka:
   instance:
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
