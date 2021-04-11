@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 @Service
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
         if (user != null && authenticatedUser != null) {
             return authenticatedUser;
         } else {
-             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User is not registered");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User is not registered");
         }
     }
     
@@ -66,9 +67,9 @@ public class UserServiceImpl implements UserService {
                 .findFirst()
                 .orElse(null);
         if (user != null && authenticatedUser != null && user.getBalance() >= 0) {
-                authenticatedUser.setBalance(user.getBalance());
-                userRepository.changeUserBalanceDB(authenticatedUser.getId(), authenticatedUser.getBalance());
-                return userRepository.findById(authenticatedUser.getId()).get();
+            authenticatedUser.setBalance(user.getBalance());
+            userRepository.changeUserBalanceDB(authenticatedUser.getId(), authenticatedUser.getBalance());
+            return userRepository.findById(authenticatedUser.getId()).get();
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not have enough money");
         }

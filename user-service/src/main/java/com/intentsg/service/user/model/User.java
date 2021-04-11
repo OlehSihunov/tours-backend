@@ -7,21 +7,24 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
-@Table(name="user")
+@Table(name = "users")
 @Component
 @Scope("prototype")
 public class User {
     
-    @Column(name="id")
+    @Column(name = "id")
     @Id
     private String id;
-    @Column(name="login")
+    @Column(name = "login")
     private String login;
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
-    @Column(name="balance")
+    
+    
+    @Column(name = "balance")
     private int balance;
     
     public User() {
@@ -64,5 +67,21 @@ public class User {
     
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return balance == user.balance &&
+                Objects.equals(id, user.id) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password, balance);
     }
 }
