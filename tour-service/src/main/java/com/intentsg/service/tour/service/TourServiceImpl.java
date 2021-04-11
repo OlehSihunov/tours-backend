@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 @Component
@@ -21,7 +22,12 @@ public class TourServiceImpl implements TourService{
     private UserTourRepository userTourRepository;
     @Override
     public Tour getTourById(Long id) {
-        return tourRepository.findById(id).get();
+        Tour responce = tourRepository.findById(id).get();
+        if(responce!=null){
+            return responce;
+        }else {
+            throw new NoSuchElementException("No your with such id");
+        }
     }
 
     @Override
