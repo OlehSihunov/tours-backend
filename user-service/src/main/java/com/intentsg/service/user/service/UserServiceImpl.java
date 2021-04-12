@@ -46,20 +46,6 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public int getUserBalance(User user) {
-        User authenticatedUser = userService.getAll()
-                .stream()
-                .filter(x -> x.getId().equals(user.getId()))
-                .findFirst()
-                .orElse(null);
-        if (user != null && authenticatedUser != null) {
-            return authenticatedUser.getBalance();
-        } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not have a balance");
-        }
-    }
-    
-    @Override
     public User changeUserBalance(User user) {
         User authenticatedUser = userService.getAll()
                 .stream()

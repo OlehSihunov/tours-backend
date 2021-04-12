@@ -14,43 +14,33 @@ import java.util.NoSuchElementException;
 
 
 @Component
-public class TourServiceImpl implements TourService{
+public class TourServiceImpl implements TourService {
     @Autowired
     private TourRepository tourRepository;
-
+    
     @Autowired
     private UserTourRepository userTourRepository;
+    
     @Override
     public Tour getTourById(Long id) {
-        Tour responce = tourRepository.findById(id).get();
-        if(responce!=null){
-            return responce;
-        }else {
-            throw new NoSuchElementException("No your with such id");
-        }
+        return tourRepository.findById(id).get();
     }
-
+    
     @Override
     public List<Tour> getAllTours() {
         return (List<Tour>) tourRepository.findAll();
     }
-
+    
     @Override
-    public List<Tour> getUserTours(Long id) {
-        return (List<Tour>) tourRepository.findAll();
+    public Page<Tour> getToursPage(Pageable pageable, Integer minPrice, Integer maxPrice) {
+        return tourRepository.findByPriceBetween(minPrice, maxPrice, pageable);
     }
-
-    @Override
-    public Page<Tour> getToursPage(Pageable pageable,Integer minPrice,Integer maxPrice) {
-        return tourRepository.findByPriceBetween(minPrice,maxPrice,pageable);
-    }
-
-
+    
     @Override
     public List<UserTour> getUserTours(String userId) {
         return userTourRepository.findAllByUserId(userId);
     }
-
+    
     @Override
     public UserTour saveNewUserTour(UserTour userTour) {
         return userTourRepository.save(userTour);
