@@ -12,8 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends JpaRepository<User, String> {
     
     @Transactional
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("update User u set u.balance= :balance where u.id= :id")
     public void changeUserBalanceDB(@Param("id") String id, @Param("balance") int balance);
-    
 }

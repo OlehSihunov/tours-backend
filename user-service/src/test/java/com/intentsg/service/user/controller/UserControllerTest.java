@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
-public class UserServiceTest {
+public class UserControllerTest {
     @MockBean
     private UserController userController;
     
@@ -27,14 +27,14 @@ public class UserServiceTest {
     
     @Test
     public void whenPostSignup_returnStatus200() throws Exception {
-        mockMvc.perform(post("/users/signup")
-                .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\"}")
+        mockMvc.perform(post("/users/signUp")
+                .content("{\"id\": \"44\",\"login\": \"bodya3\",\"password\": \"111\"}")
                 .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
     }
     
     @Test
     public void whenPostSignin_returnStatus200() throws Exception {
-        mockMvc.perform(post("/users/signin")
+        mockMvc.perform(post("/users/getUser")
                 .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\"}")
                 .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
     }
@@ -53,10 +53,4 @@ public class UserServiceTest {
                 .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isBadRequest());
     }
     
-    @Test
-    public void whenPostGetBalance_returnStatus200() throws Exception {
-        mockMvc.perform(post("/users/balance")
-                .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\"}")
-                .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
-    }
 }
