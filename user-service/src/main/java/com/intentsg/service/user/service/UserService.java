@@ -11,8 +11,6 @@ public interface UserService {
     
     public User getUserByLogin(User user);
     
-    public int getUserBalance(User user);
-    
     public User changeUserBalance(User user);
     
     public List<User> getAll();

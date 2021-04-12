@@ -9,7 +9,6 @@ import java.util.List;
 public interface TourService {
     Tour getTourById(Long id);
     List<Tour> getAllTours();
-    List<Tour> getUserTours(Long id);
     Page<Tour> getToursPage(Pageable pageable,Integer minPrice, Integer maxPrice);
     List<UserTour> getUserTours(String userId);
     UserTour saveNewUserTour(UserTour userTour);
