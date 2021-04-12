@@ -5,7 +5,7 @@ spring:
   application:
     name: tour-service
   datasource:
-    url: jdbc:mysql://tours.cnmkzpeyddof.eu-central-1.rds.amazonaws.com:3304/tours
+    url: jdbc:mysql://tours.cnmkzpeyddof.eu-central-1.rds.amazonaws.com:3304/tours?autoReconnect=true&useSSL=false
     username: toursroot
     password: root1111
 
