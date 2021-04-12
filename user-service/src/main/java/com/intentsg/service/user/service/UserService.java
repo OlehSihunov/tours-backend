@@ -8,8 +8,12 @@ import java.util.List;
 @Service
 public interface UserService {
     public void addUser(User user);
+    
     public User getUserByLogin(User user);
+    
     public int getUserBalance(User user);
-    public void changeUserBalance(User user);
+    
+    public User changeUserBalance(User user);
+    
     public List<User> getAll();
 }
