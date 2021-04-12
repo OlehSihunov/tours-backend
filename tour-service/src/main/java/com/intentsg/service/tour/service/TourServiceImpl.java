@@ -42,7 +42,6 @@ public class TourServiceImpl implements TourService{
 
     @Override
     public Page<Tour> getToursPage(Pageable pageable,Integer minPrice,Integer maxPrice) {
-
         return tourRepository.findByPriceBetween(minPrice,maxPrice,pageable);
     }
 

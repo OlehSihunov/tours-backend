@@ -13,7 +13,6 @@ import java.util.List;
 
 public interface UserTourRepository extends JpaRepository<UserTour,Long> {
     List<UserTour> findAllByUserId(String userId);
-    List<UserTour> findAllByAmount(Integer userId);
 }
 
 
