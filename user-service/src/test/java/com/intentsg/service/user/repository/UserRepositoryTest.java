@@ -20,16 +20,11 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository subject;
     
-    @After
-    public void tearDown() throws Exception {
-        subject.deleteAll();
-    }
-
     @Test
     public void changeUserBalanceDBTest() throws Exception {
-        User peter = new User("bodya","111","41", 1000);
+        User peter = new User("bodya", "111", "41", 1000);
         subject.save(peter);
-        subject.changeUserBalanceDB("41",100);
+        subject.changeUserBalanceDB("41", 100);
         User changedPeter = subject.getOne("41");
         assertEquals(changedPeter.getBalance(), 100);
     }

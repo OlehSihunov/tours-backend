@@ -1,15 +1,16 @@
-package com.intentsg.service.user.model;
+package com.intentsg.model;
 
+import com.intentsg.service.user.model.User;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserTest {
+class UserDTOTest {
     
     @Test
     void getLogin() {
         System.out.println("getLogin");
-        User instance = new User();
+        UserDTO instance = new UserDTO();
         String expResult = "login";
         instance.setLogin("login");
         String result = instance.getLogin();
@@ -20,7 +21,7 @@ class UserTest {
     void setLogin() {
         System.out.println("setLogin");
         String login = "login";
-        User instance = new User();
+        UserDTO instance = new UserDTO();
         instance.setLogin("login");
         assertEquals(instance.getLogin(), login);
     }
@@ -28,7 +29,7 @@ class UserTest {
     @Test
     void getPassword() {
         System.out.println("getPassword");
-        User instance = new User();
+        UserDTO instance = new UserDTO();
         String expResult = "Password";
         instance.setPassword("Password");
         String result = instance.getPassword();
@@ -39,7 +40,7 @@ class UserTest {
     void setPassword() {
         System.out.println("setPassword");
         String password = "password";
-        User instance = new User();
+        UserDTO instance = new UserDTO();
         instance.setPassword("password");
         assertEquals(instance.getPassword(), password);
     }
@@ -47,7 +48,7 @@ class UserTest {
     @Test
     void getId() {
         System.out.println("getId");
-        User instance = new User();
+        UserDTO instance = new UserDTO();
         String expResult = "Id";
         instance.setId("Id");
         String result = instance.getId();
@@ -58,7 +59,7 @@ class UserTest {
     void setId() {
         System.out.println("setId");
         String Id = "Id";
-        User instance = new User();
+        UserDTO instance = new UserDTO();
         instance.setId("Id");
         assertEquals(instance.getId(), Id);
     }
@@ -66,7 +67,7 @@ class UserTest {
     @Test
     void getBalance() {
         System.out.println("getBalance");
-        User instance = new User();
+        UserDTO instance = new UserDTO();
         int expResult = 1000;
         instance.setBalance(1000);
         int result = instance.getBalance();
@@ -77,13 +78,13 @@ class UserTest {
     void setBalance() {
         System.out.println("setBalance");
         int balance = 2000;
-        User instance = new User();
+        UserDTO instance = new UserDTO();
         instance.setBalance(2000);
         assertEquals(instance.getBalance(), balance);
     }
     @Test
-    public void User() {
-        User peter = new User("bodya", "111", "41", 1000);
+    public void UserDTO() {
+        UserDTO peter = new UserDTO("bodya", "111", "41", 1000);
         assertEquals(peter.getLogin(), "bodya");
         assertEquals(peter.getPassword(), "111");
         assertEquals(peter.getId(), "41");

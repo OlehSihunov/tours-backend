@@ -33,27 +33,32 @@ public class UserServiceApplicationTest {
     private UserServiceImpl userServiceImpl;
     
     @Test
-    public void contextLoadsUserController() throws Exception {
+    public void main() {
+        UserServiceApplication.main(new String[] {});
+    }
+    
+    @Test
+    public void contextLoadsUserController() {
         assertNotEquals(controller, null);
     }
     
     @Test
-    public void contextLoadsUser() throws Exception {
+    public void contextLoadsUser() {
         assertNotEquals(user, null);
     }
     
     @Test
-    public void contextLoadsUserService() throws Exception {
+    public void contextLoadsUserService() {
         assertNotEquals(userService, null);
     }
     
     @Test
-    public void contextLoadsUserRepository() throws Exception {
+    public void contextLoadsUserRepository() {
         assertNotEquals(userRepository, null);
     }
     
     @Test
-    public void contextLoadsUserServiceImpl() throws Exception {
+    public void contextLoadsUserServiceImpl() {
         assertNotEquals(userServiceImpl, null);
     }
 }
