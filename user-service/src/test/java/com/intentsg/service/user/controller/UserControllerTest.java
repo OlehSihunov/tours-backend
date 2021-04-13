@@ -39,7 +39,7 @@ public class UserControllerTest {
     
     @Test
     public void whenPostSignIn_returnStatus200() throws Exception {
-        mockMvc.perform(post("/users/getUser")
+        mockMvc.perform(post("/users/signIn")
                 .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\"}")
                 .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
     }

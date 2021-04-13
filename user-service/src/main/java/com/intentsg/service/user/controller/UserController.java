@@ -23,7 +23,7 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserByLogin(user), HttpStatus.OK);
     }
     
-    @PostMapping("/getUser")
+    @PostMapping("/signIn")
     public ResponseEntity<User> signin(@RequestBody User user) {
         return new ResponseEntity<>(userService.getUserByLogin(user), HttpStatus.OK);
     }

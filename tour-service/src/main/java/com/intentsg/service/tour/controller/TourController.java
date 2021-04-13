@@ -1,5 +1,6 @@
 package com.intentsg.service.tour.controller;
 
+import com.intentsg.model.UserOrder;
 import com.intentsg.service.tour.model.Tour;
 import com.intentsg.service.tour.model.UserTour;
 import com.intentsg.service.tour.service.TourService;
@@ -25,35 +26,28 @@ public class TourController {
 	@GetMapping("/")
 	public  ResponseEntity<List<Tour>> getAllTours() {
 		System.out.println("Hello");
-		return  new ResponseEntity<List<Tour>>(tourService.getAllTours(), HttpStatus.OK);
+		return  new ResponseEntity<>(tourService.getAllTours(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{tourId}")
 	public ResponseEntity<Tour> getTourById(@PathVariable("tourId") Long id) {
-		return  new ResponseEntity<Tour>(tourService.getTourById(id),HttpStatus.OK);
+		return  new ResponseEntity<>(tourService.getTourById(id),HttpStatus.OK);
 	}
-	/*@PostMapping("/addTour")
-	public ResponseEntity<Tour> saveNewTour(@RequestBody Tour tour) {
-		return new ResponseEntity<Tour>(tourService.saveTour(tour),HttpStatus.CREATED);
-	}
-	@PostMapping("/addTours")
-	public ResponseEntity<List<Tour>> saveAllTours(@RequestBody List<Tour> tours) {
-		return  new ResponseEntity<List<Tour>>(tourService.saveAllTours(tours),HttpStatus.CREATED);
-	}*/
 	@GetMapping("/getPage")
-	public ResponseEntity<Page<Tour>> getToursPage(@RequestParam Integer maxPrice, @RequestParam Integer minPrice,Pageable pageable) {
+	public ResponseEntity<Page<Tour>> getToursPage(@RequestParam(required = false, defaultValue = "10000") Integer maxPrice, @RequestParam(required = false, defaultValue = "0") Integer minPrice,Pageable pageable) {
 
 		System.out.println(pageable);
-		return  new ResponseEntity<Page<Tour>>(tourService.getToursPage(pageable,minPrice,maxPrice),HttpStatus.OK);
+		return  new ResponseEntity<>(tourService.getToursPage(pageable,minPrice,maxPrice),HttpStatus.OK);
 	}
 
     @GetMapping("/users/{userId}")
-	public ResponseEntity<List<UserTour>> getUserTours(@PathVariable("userId") String userId) {
-		return  new ResponseEntity<List<UserTour>>(tourService.getUserTours(userId),HttpStatus.OK);
+	public ResponseEntity<List<UserOrder>> getUserTours(@PathVariable("userId") String userId) {
+
+		return  new ResponseEntity<>(tourService.getUserTours(userId),HttpStatus.OK);
 	}
 	@PostMapping("/users/addNew")
 	public ResponseEntity<UserTour> saveNewUserTour(@RequestBody UserTour userTour) {
-		return  new ResponseEntity<UserTour>(tourService.saveNewUserTour(userTour),HttpStatus.CREATED);
+		return  new ResponseEntity<>(tourService.saveNewUserTour(userTour),HttpStatus.CREATED);
 	}
 
 }
