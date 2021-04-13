@@ -3,7 +3,6 @@ package com.intentsg.model;
 
 public class UserDTO {
     
-
     private String id;
     private String login;
     private String password;

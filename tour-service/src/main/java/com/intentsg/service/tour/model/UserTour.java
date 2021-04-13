@@ -23,7 +23,17 @@ public class UserTour {
 
     @Column(name = "amount")
     private int amount;
-
+    
+    public UserTour() {
+    }
+    
+    public UserTour(Long id, String userId, Long tourId, int amount) {
+        this.id = id;
+        this.userId = userId;
+        this.tourId = tourId;
+        this.amount = amount;
+    }
+    
     public String getUserId() {
         return userId;
     }
