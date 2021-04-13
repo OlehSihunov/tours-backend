@@ -1,5 +1,6 @@
 package com.intentsg.service.tour.service;
 
+import com.intentsg.model.UserOrder;
 import com.intentsg.service.tour.model.Tour;
 import com.intentsg.service.tour.model.UserTour;
 import org.springframework.data.domain.Page;
@@ -11,7 +12,7 @@ public interface TourService {
     List<Tour> getAllTours();
     List<Tour> getUserTours(Long id);
     Page<Tour> getToursPage(Pageable pageable,Integer minPrice, Integer maxPrice);
-    List<UserTour> getUserTours(String userId);
+    List<UserOrder> getUserTours(String userId);
     UserTour saveNewUserTour(UserTour userTour);
 
 

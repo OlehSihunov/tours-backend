@@ -1,5 +1,6 @@
 package com.intentsg.service.tour.controller;
 
+import com.intentsg.model.UserOrder;
 import com.intentsg.service.tour.model.Tour;
 import com.intentsg.service.tour.model.UserTour;
 import com.intentsg.service.tour.service.TourService;
@@ -41,15 +42,16 @@ public class TourController {
 		return  new ResponseEntity<List<Tour>>(tourService.saveAllTours(tours),HttpStatus.CREATED);
 	}*/
 	@GetMapping("/getPage")
-	public ResponseEntity<Page<Tour>> getToursPage(@RequestParam Integer maxPrice, @RequestParam Integer minPrice,Pageable pageable) {
+	public ResponseEntity<Page<Tour>> getToursPage(@RequestParam(required = false, defaultValue = "10000") Integer maxPrice, @RequestParam(required = false, defaultValue = "0") Integer minPrice,Pageable pageable) {
 
 		System.out.println(pageable);
 		return  new ResponseEntity<Page<Tour>>(tourService.getToursPage(pageable,minPrice,maxPrice),HttpStatus.OK);
 	}
 
     @GetMapping("/users/{userId}")
-	public ResponseEntity<List<UserTour>> getUserTours(@PathVariable("userId") String userId) {
-		return  new ResponseEntity<List<UserTour>>(tourService.getUserTours(userId),HttpStatus.OK);
+	public ResponseEntity<List<UserOrder>> getUserTours(@PathVariable("userId") String userId) {
+
+		return  new ResponseEntity<List<UserOrder>>(tourService.getUserTours(userId),HttpStatus.OK);
 	}
 	@PostMapping("/users/addNew")
 	public ResponseEntity<UserTour> saveNewUserTour(@RequestBody UserTour userTour) {

@@ -1,5 +1,6 @@
 package com.intentsg.service.tour.service;
 
+import com.intentsg.model.UserOrder;
 import com.intentsg.service.tour.model.Tour;
 import com.intentsg.service.tour.model.UserTour;
 import com.intentsg.service.tour.repository.TourRepository;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -47,8 +49,22 @@ public class TourServiceImpl implements TourService{
 
 
     @Override
-    public List<UserTour> getUserTours(String userId) {
-        return userTourRepository.findAllByUserId(userId);
+    public List<UserOrder> getUserTours(String userId) {
+        List<UserTour> ut =  userTourRepository.findAllByUserId(userId);
+        List<UserOrder> uo = new ArrayList<>();
+        for (UserTour el: ut) {
+            Tour temp = getTourById(el.getTourId());
+            uo.add(new UserOrder(
+                    temp.getId(),
+                    temp.getTitle(),
+                    temp.getDescription(),
+                    temp.getPrice(),
+                    temp.getImageUrl(),
+                    el.getUserId(),
+                    el.getAmount()
+            ));
+        }
+        return uo;
     }
 
     @Override
