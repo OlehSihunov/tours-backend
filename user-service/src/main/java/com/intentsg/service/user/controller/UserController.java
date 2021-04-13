@@ -17,15 +17,14 @@ public class UserController {
     @Autowired
     UserService userService;
     
-    @PostMapping("/signup")
+    @PostMapping("/signUp")
     public ResponseEntity<User> signup(@RequestBody User user) {
         userService.addUser(user);
         return new ResponseEntity<>(userService.getUserByLogin(user), HttpStatus.OK);
     }
     
-    @PostMapping("/signin")
+    @PostMapping("/signIn")
     public ResponseEntity<User> signin(@RequestBody User user) {
-        userService.getUserByLogin(user);
         return new ResponseEntity<>(userService.getUserByLogin(user), HttpStatus.OK);
     }
     
@@ -36,17 +35,10 @@ public class UserController {
     
     @PostMapping("/changeBalance")
     public ResponseEntity<?> changeBalance(@RequestBody User user) {
-        System.out.println(user.getBalance() >=0 );
         if (user.getBalance() >= 0) {
             return ResponseEntity.ok(userService.changeUserBalance(user));
         } else {
             return ResponseEntity.badRequest().body("User does not have enough money");
         }
     }
-    
-    @PostMapping("/balance")
-    public ResponseEntity<Integer> balance(@RequestBody User user) {
-        return new ResponseEntity<>(userService.getUserBalance(user), HttpStatus.OK);
-    }
-    
 }

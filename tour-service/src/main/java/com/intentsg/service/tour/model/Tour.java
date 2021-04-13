@@ -23,6 +23,17 @@ public class Tour {
     private int price;
     @Column(name = "image_url")
     private String imageUrl;
+    
+    public Tour(Long id, String title, String description, int price, String imageUrl) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+    }
+    
+    public Tour() {
+    }
 
 
     public Long getId() {
@@ -70,7 +81,6 @@ public class Tour {
         return "Tour{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-
                 ", price=" + price +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';

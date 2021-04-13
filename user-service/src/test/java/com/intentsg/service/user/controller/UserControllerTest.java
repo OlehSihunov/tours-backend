@@ -1,6 +1,7 @@
 package com.intentsg.service.user.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,10 +13,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UserController.class)
-public class UserServiceTest {
+@WebMvcTest(controllers = UserController.class)
+public class UserControllerTest {
+    
     @MockBean
     private UserController userController;
+    
+    @Autowired
+    private ObjectMapper objectMapper;
     
     @Autowired
     private MockMvc mockMvc;
@@ -26,15 +31,15 @@ public class UserServiceTest {
     }
     
     @Test
-    public void whenPostSignup_returnStatus200() throws Exception {
-        mockMvc.perform(post("/users/signup")
-                .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\"}")
+    public void whenPostSignUp_returnStatus200() throws Exception {
+        mockMvc.perform(post("/users/signUp")
+                .content("{\"id\": \"44\",\"login\": \"bodya3\",\"password\": \"111\"}")
                 .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
     }
     
     @Test
-    public void whenPostSignin_returnStatus200() throws Exception {
-        mockMvc.perform(post("/users/signin")
+    public void whenPostSignIn_returnStatus200() throws Exception {
+        mockMvc.perform(post("/users/signIn")
                 .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\"}")
                 .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
     }
@@ -47,16 +52,15 @@ public class UserServiceTest {
     }
     
     @Test
-    public void whenPostChangeBalance_returnStatus400() throws Exception {
+    public void whenPostChangeBalanceWithoutBalance_returnStatus400() throws Exception {
         mockMvc.perform(post("/users/changeBalance")
-                .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\",\"balance\": -100}")
+                .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\"")
                 .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isBadRequest());
     }
-    
     @Test
-    public void whenPostGetBalance_returnStatus200() throws Exception {
-        mockMvc.perform(post("/users/balance")
-                .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\"}")
-                .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+    public void whenPostChangeBalanceWithMinusBalance_returnStatus400() throws Exception {
+        mockMvc.perform(post("/users/changeBalance")
+                .content("{\"id\": \"5\",\"login\": \"USER_Login\",\"password\": \"111\",\"balance\": (-100)}")
+                .contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isBadRequest());
     }
 }
